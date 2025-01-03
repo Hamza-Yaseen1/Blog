@@ -20,7 +20,8 @@ function Hero() {
                     <Image
                         src="/images/hero.png"
                         alt="Hero"
-                        className="rounded-lg shadow-lg w-full h-full object-cover"
+                        height={384}
+                        width={500}                        className="rounded-lg shadow-lg w-full h-full object-cover"
                     />
                 </div>
             </div>
