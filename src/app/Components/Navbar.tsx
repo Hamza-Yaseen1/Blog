@@ -103,6 +103,10 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
+            <li>
+            <ModeToggle />
+            
+          </li>
           </ul>
         </div>
       )}
