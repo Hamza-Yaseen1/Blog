@@ -5,7 +5,6 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Hero from "./Components/hero";
 import Link from "next/link";
-import Footer from "./Components/footer";
 
 async function getData() {
   const query = `
@@ -53,7 +52,6 @@ export default async function Home() {
           ))}
         </div>
       </main>
-      <Footer/>
     </>
   );
 }
