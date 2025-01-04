@@ -21,13 +21,13 @@ function Hero() {
         </div>
 
         {/* Image Section */}
-        <div className="hero-img w-full md:w-1/2 h-64 md:h-96 mt-6 md:mt-0">
+        <div className="hero-img w-full md:w-1/2 h-64 md:h-96 mt-6 md:mt-0 overflow-hidden rounded-lg">
           <Image
             src="/images/ai.jpg"
             alt="Hero"
-            height={204}
-            width={200}
-            className="rounded-lg shadow-lg w-full h-full object-cover"
+            width={600}
+            height={400}
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
