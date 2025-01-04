@@ -5,7 +5,6 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Hero from "./Components/hero";
 import Link from "next/link";
-
 async function getData() {
   const query = `
     *[_type=='blog'] | order(_createdAt asc) {

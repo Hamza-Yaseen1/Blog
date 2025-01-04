@@ -1,133 +1,102 @@
-"use client"
+"use client";
+
 import { useState } from "react";
-import { client } from "@/app/lib/sanity";
 
-type Comment = {
-  name: string;
+interface Comment {
+  id: number;
+  username: string;
   email: string;
-  content: string;
-  createdAt: string;
-};
+  text: string;
+  createdAt: Date;
+}
 
-type CommentForm = {
-  name: string;
-  email: string;
-  content: string;
-};
-
-export default function CommentSection({ blogId }: { blogId: string }) {
+function CommentSection() {
   const [comments, setComments] = useState<Comment[]>([]);
-  const [formData, setFormData] = useState<CommentForm>({
-    name: "",
-    email: "",
-    content: "",
-  });
-  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [newComment, setNewComment] = useState<string>("");
 
-  const fetchComments = async () => {
-    try {
-      const query = `
-        *[_type == "comment" && blog._ref == $blogId] | order(createdAt desc) {
-          name,
-          content,
-          createdAt
-        }
-      `;
-      const data = await client.fetch(query, { blogId });
-      setComments(data);
-    } catch (error) {
-      console.error("Error fetching comments:", error);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleCommentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      await client.create({
-        _type: "comment",
-        name: formData.name,
-        email: formData.email,
-        content: formData.content,
-        blog: { _type: "reference", _ref: blogId },
-      });
-      setFormData({ name: "", email: "", content: "" });
-      fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error("Error submitting comment:", error);
-    } finally {
-      setLoading(false);
+
+    if (username.trim() && email.trim() && newComment.trim()) {
+      const newCommentData: Comment = {
+        id: Date.now(),
+        username,
+        email,
+        text: newComment,
+        createdAt: new Date(),
+      };
+
+      setComments([...comments, newCommentData]);
+      setUsername("");
+      setEmail("");
+      setNewComment("");
     }
   };
-
-  // Fetch comments on load
-  useState(() => {
-    fetchComments();
-  });
 
   return (
-    <div className="mt-16">
-      <h2 className="text-2xl font-semibold mb-6">Comments</h2>
-
-      {/* Existing Comments */}
-      <div className="space-y-4">
-        {comments.length > 0 ? (
-          comments.map((comment, index) => (
-            <div key={index} className="p-4 border rounded-md bg-gray-100 dark:bg-gray-800">
-              <p className="font-medium">{comment.name}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {new Date(comment.createdAt).toLocaleString()}
-              </p>
-              <p className="mt-2">{comment.content}</p>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-600 dark:text-gray-400">No comments yet. Be the first to comment!</p>
-        )}
-      </div>
-
-      {/* Comment Form */}
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+    <div className="comment-section mt-10">
+      {/* Add Comment */}
+      <h3 className="text-lg font-semibold mb-4">Leave a Comment</h3>
+      <form onSubmit={handleCommentSubmit} className="flex flex-col space-y-4">
         <input
           type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleInputChange}
-          className="w-full px-4 py-2 border rounded-md"
-          required
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter your name"
+          className="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          className="w-full px-4 py-2 border rounded-md"
-          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          className="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <textarea
-          name="content"
-          placeholder="Your Comment"
-          value={formData.content}
-          onChange={handleInputChange}
-          className="w-full px-4 py-2 border rounded-md"
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Write your comment here..."
+          className="border border-gray-300 rounded-md p-3 w-full resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows={4}
-          required
         />
         <button
           type="submit"
-          disabled={loading}
-          className="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
         >
-          {loading ? "Submitting..." : "Submit"}
+          Submit
         </button>
       </form>
+
+      {/* Display Comments */}
+      <div className="comments-list mt-6">
+        <h4 className="text-lg font-medium mb-4">
+          {comments.length > 0
+            ? `${comments.length} Comment${comments.length > 1 ? "s" : ""}`
+            : "No comments yet"}
+        </h4>
+        <ul className="space-y-6">
+          {comments.map((comment) => (
+            <li
+              key={comment.id}
+              className="flex flex-col space-y-2 border-b border-gray-200 pb-4"
+            >
+              <div className="font-medium text-blue-600">{comment.username}</div>
+              <div className="text-sm text-gray-500">{comment.email}</div>
+              <div className="text-gray-700">{comment.text}</div>
+              <div className="text-xs text-gray-400">
+                {new Intl.DateTimeFormat("en-US", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                }).format(comment.createdAt)}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
+
+export default CommentSection;

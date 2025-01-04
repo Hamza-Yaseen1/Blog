@@ -1,3 +1,4 @@
+import CommentSection from "@/app/Components/commentSection";
 import { fullBlog } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
@@ -59,6 +60,8 @@ export default async function BlogArticle({
       <div className="mt-16 prose prose-blue prose-lg dark:prose-invert prose-li:marker:text-primary prose-a:text-primary">
         <PortableText value={data.content} />
       </div>
+      <CommentSection/>
+
     </div>
   );
 }
