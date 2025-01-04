@@ -37,7 +37,7 @@ export default async function BlogArticle({
   const data: fullBlog = await getData(params.slug);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 ml-5">
       <h1>
         <span className="block text-base text-center text-primary font-semibold tracking-wide uppercase">
           Hamza - Blog

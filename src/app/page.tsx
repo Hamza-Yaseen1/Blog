@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Hero from "./Components/hero";
+import Link from "next/link";
+import Footer from "./Components/footer";
 
 async function getData() {
   const query = `
@@ -28,6 +30,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((post, index) => (
             <Card key={index} className="shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200">
+              <Link                   href={`/blog/${post.currentSlug}`}              >
               <Image
                 src={urlFor(post.titleImage).url()}
                 alt={post.title}
@@ -45,10 +48,12 @@ export default async function Home() {
                   Read More →
                 </a>
               </CardContent>
+              </Link>
             </Card>
           ))}
         </div>
       </main>
+      <Footer/>
     </>
   );
 }
