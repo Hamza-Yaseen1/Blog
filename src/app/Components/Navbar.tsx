@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
@@ -44,7 +43,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover:text-blue-500 transition-colors">
+            <Link href="./contact" className="hover:text-blue-500 transition-colors">
               Contact
             </Link>
           </li>
