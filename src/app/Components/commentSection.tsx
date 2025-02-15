@@ -36,7 +36,7 @@ function CommentSection() {
   };
 
   return (
-    <div className="comment-section mt-10">
+    <div className="comment-section mt-10 ml-4 mr-4">
       {/* Add Comment */}
       <h3 className="text-lg font-semibold mb-4">Leave a Comment</h3>
       <form onSubmit={handleCommentSubmit} className="flex flex-col space-y-4">

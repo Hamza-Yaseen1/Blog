@@ -34,7 +34,7 @@ export default async function BlogArticle({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await rawParams; // Resolve the promise
+  const params = await rawParams; 
   const data: fullBlog = await getData(params.slug);
 
   return (
@@ -50,14 +50,15 @@ export default async function BlogArticle({
 
       <Image
         src={urlFor(data.titleImage).url()}
-        width={800}
-        height={800}
+        width={0}
+        height={0}
+        layout="responsive"
         alt="Title Image"
         priority
-        className="rounded-lg mt-8 border"
+        className="rounded-lg mt-8 border flex justify-center"
       />
 
-      <div className="mt-16 prose prose-blue prose-lg dark:prose-invert prose-li:marker:text-primary prose-a:text-primary">
+      <div className="mt-16 prose prose-blue prose-lg pl-10 pr-5 dark:prose-invert prose-li:marker:text-primary prose-a:text-primary">
         <PortableText value={data.content} />
       </div>
       <CommentSection/>
