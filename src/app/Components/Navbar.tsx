@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -38,8 +39,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover:text-blue-500 transition-colors">
-              About
+            <Link href="/Read" className="hover:text-blue-500 transition-colors">
+              Blogs
             </Link>
           </li>
           <li>
@@ -106,8 +107,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-blue-500 transition-colors dark:text-white">
-                About
+              <Link href="/Read" className="hover:text-blue-500 transition-colors dark:text-white">
+                Blogs
               </Link>
             </li>
            
