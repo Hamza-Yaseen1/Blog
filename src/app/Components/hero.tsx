@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -16,7 +17,9 @@ function Hero() {
         </p>
         <div className="flex justify-center md:justify-start">
           <button className="bg-white text-green-500 px-4 py-2 text-sm rounded shadow hover:bg-gray-100">
-            Learn More
+            <Link href="/Read">
+              Read Blogs
+            </Link>
           </button>
         </div>
       </div>

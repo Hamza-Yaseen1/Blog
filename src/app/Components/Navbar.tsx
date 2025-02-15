@@ -53,7 +53,7 @@ const Navbar = () => {
     <div className="flex items-center">
       <input
         type="text"
-        placeholder="Search"
+        placeholder="Search Blogs"
         className="border-2 border-gray-300 rounded-md p-1 mr-2"
       />
       <button onClick={() => setShowSearch(false)} className="text-gray-500 hover:text-red-500">

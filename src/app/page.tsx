@@ -51,6 +51,13 @@ export default async function Home() {
           ))}
         </div>
       </main>
+     <div className="more-blog flex justify-center pb-10">
+      <button className="bg-purple-500 text-white px-72 py-2 rounded-md">
+        <Link href="/Read">
+          Read More Blogs
+        </Link>
+      </button>
+     </div>
     </>
   );
 }
