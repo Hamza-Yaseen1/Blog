@@ -24,7 +24,7 @@ export default async function Read() {
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold text-center mb-6">Latest Blogs</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data.map((post, index) => (
+          {data.reverse().map((post, index) => (
             <Card key={index} className="shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200">
               <Link href={`/blog/${post.currentSlug}`}              >
               <Image

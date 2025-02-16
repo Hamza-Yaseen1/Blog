@@ -12,7 +12,6 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const handleClick = () => setShowSearch(!showSearch);
-
   return (
     <nav className="flex justify-between p-6 relative">
       {/* Logo Section */}
@@ -56,6 +55,7 @@ const Navbar = () => {
         placeholder="Search Blogs"
         className="border-2 border-gray-300 rounded-md p-1 mr-2"
       />
+    
       <button onClick={() => setShowSearch(false)} className="text-gray-500 hover:text-red-500">
         ✖
       </button>
