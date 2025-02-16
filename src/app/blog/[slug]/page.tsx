@@ -52,10 +52,15 @@ export default async function BlogArticle({
         src={urlFor(data.titleImage).url()}
         width={0}
         height={0}
-        layout="responsive"
+        sizes="100vw"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: '1200px'
+        }}
         alt="Title Image"
         priority
-        className="rounded-lg mt-8 border flex justify-center"
+        className="rounded-lg mt-8 border mx-auto"
       />
 
       <div className="mt-16 prose prose-blue prose-lg pl-10 pr-5 dark:prose-invert prose-li:marker:text-primary prose-a:text-primary">

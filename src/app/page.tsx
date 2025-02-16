@@ -51,13 +51,13 @@ export default async function Home() {
           ))}
         </div>
       </main>
-     <div className="more-blog flex justify-center pb-10">
-      <button className="bg-purple-500 text-white px-72 py-2 rounded-md">
-        <Link href="/Read">
+      <div className="more-blog flex justify-center pb-10">
+      <Link href="/Read" passHref>
+        <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold px-8 md:px-16 lg:px-24 xl:px-32 py-3 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
           Read More Blogs
-        </Link>
-      </button>
-     </div>
+        </button>
+      </Link>
+    </div>
     </>
   );
 }
